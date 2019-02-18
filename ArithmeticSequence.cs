@@ -10,14 +10,17 @@ namespace PadawansTask2
             if (count <= 0)
                 throw new ArgumentException("count <= 0");
             int result = 0;
-            try
+
+            for (int i = 0; i < count; i++)
             {
-                for (int i = 0; i < count; i++)
-                    result += number + add * i;
-            }
-            catch(OverflowException ex)
-            {
-                throw new OverflowException();
+                try
+                {
+                    result = checked(result + number + add * i);
+                }
+                catch (OverflowException ex)
+                {
+                    throw new OverflowException();
+                }
             }
             return result;
         }
